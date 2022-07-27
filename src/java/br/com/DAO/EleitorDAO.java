@@ -52,8 +52,8 @@ public class EleitorDAO {
                 EleitorDTO objEleitorDTO = new EleitorDTO();
                 objEleitorDTO.setTituloEleitoralEleitor(rs.getInt("titulo_eleitoral_eleitor"));
                 objEleitorDTO.setNome(rs.getString("nome"));
-                objEleitorDTO.setNome(rs.getString("usuario"));
-                objEleitorDTO.setNome(rs.getString("senha"));
+                objEleitorDTO.setUsuario(rs.getString("usuario"));
+                objEleitorDTO.setSenha(rs.getString("senha"));
                 lista.add(objEleitorDTO);
             }
 

@@ -4,9 +4,9 @@
     Author     : sala19a
 --%>
 
+<%@page import="br.com.DAO.EleitorDAO"%>
+<%@page import="br.com.DTO.EleitorDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="br.com.DTO.UsuarioDTO"%>
-<%@page import="br.com.DAO.UsuarioDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,29 +15,39 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-            try {
-                UsuarioDAO objUsuarioDAO = new UsuarioDAO();
-                ArrayList<UsuarioDTO> lista = objUsuarioDAO.pesquisarUsuario();
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titulo Eleitoral</th>
+                    <th>Nome</th>
+                    <th>Usuario</th>
+                    <th>Senha</th>
+                </tr>
+            </thead>
+                <%
+                    try {
+                        EleitorDAO objUsuarioDAO = new EleitorDAO();
+                        ArrayList<EleitorDTO> lista = objUsuarioDAO.pesquisarEleitor();
 
-                System.out.println("Lista retornada: " + lista);
-                for (int num = 0; num < lista.size(); num++) {
+                        System.out.println("Lista retornada: " + lista);
+                        for (int num = 0; num < lista.size(); num++) {%>
 
-                    out.print("Código: " + lista.get(num).getCpfUsuario() + "<br>");
+                out.print("Titulo Eleitoral: " + lista.get(num).getTituloEleitoralEleitor() + "<br>");
 
-                    out.print("Nome: " + lista.get(num).getNomeUsuario() + "<br>");
+            out.print("Nome: " + lista.get(num).getNome() + "<br>");
 
-                    out.print("<a href='formExcluirUsuario.jsp?id="
-                            + lista.get(num).getCpfUsuario() + "&nome="
-                            + lista.get(num).getNomeUsuario() + "'>EXCLUIR</a>");
+            out.print("<a href='formExcluirUsuario.jsp?id="
+                          + lista.get(num).getTituloEleitoralEleitor()+ "&nome="
+                          + lista.get(num).getNome() + "'>EXCLUIR</a>");
 
-        %><BR><BR><%                        }
+            <BR><BR>
+            <%}
 
-                    } catch (Exception e) {
+                } catch (Exception e) {
 
-                    }
+                }
 
 
-        %>
-    </body>
-</html>
+            %>
+            </body>
+            </html>
