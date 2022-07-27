@@ -16,10 +16,10 @@ public class VotoDTO {
     CandidatoDTO objCandidatoDTO = new CandidatoDTO();
     EleitorDTO objUsuarioDTO = new EleitorDTO();
     
-    public VotoDTO(Integer idVoto, Integer numeroCandidato, Integer cpfUsuario){
-        this.idVoto = idVoto;
-        objCandidatoDTO.setNumeroCandidato(numeroCandidato);
-        objUsuarioDTO.setCpfUsuario(cpfUsuario);
-    }
+//    public VotoDTO(Integer idVoto, Integer numeroCandidato, Integer cpfUsuario){
+//        this.idVoto = idVoto;
+//        objCandidatoDTO.setNumeroCandidato(numeroCandidato);
+//        //objUsuarioDTO.setCpfUsuario(cpfUsuario);
+//    }
     
 }

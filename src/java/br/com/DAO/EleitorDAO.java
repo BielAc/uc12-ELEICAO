@@ -30,9 +30,9 @@ public class EleitorDAO {
         try {
             pstm = con.prepareStatement(sql);
             pstm.setInt(1, objEleitor.getTituloEleitoralEleitor());
-            pstm.setString(2, objEleitor.getNomeEleitor());
-            pstm.setString(2, objEleitor.getUsuario());
-            pstm.setString(2, objEleitor.getSenha());
+            pstm.setString(2, objEleitor.getNome());
+            pstm.setString(3, objEleitor.getUsuario());
+            pstm.setString(4, objEleitor.getSenha());
             pstm.execute();
             pstm.close();
 
@@ -50,8 +50,10 @@ public class EleitorDAO {
 
             while(rs.next()) {
                 EleitorDTO objEleitorDTO = new EleitorDTO();
-                objEleitorDTO.setCpfEleitor(rs.getInt("cpf"));
-                objEleitorDTO.setNomeEleitor(rs.getString("nome"));
+                objEleitorDTO.setTituloEleitoralEleitor(rs.getInt("titulo_eleitoral_eleitor"));
+                objEleitorDTO.setNome(rs.getString("nome"));
+                objEleitorDTO.setNome(rs.getString("usuario"));
+                objEleitorDTO.setNome(rs.getString("senha"));
                 lista.add(objEleitorDTO);
             }
 
@@ -63,12 +65,12 @@ public class EleitorDAO {
     }
 
     public void excluirEleitor(EleitorDTO objEleitor) throws ClassNotFoundException {
-        String sql = "delete from eleitores where cpfEleitor = ?";
+        String sql = "delete from eleitores where titulo_eleitoral_eleitor = ?";
         con = new ConexaoDAO().conexaoBD();
 
         try {
             pstm = con.prepareStatement(sql);
-            pstm.setInt(1, objEleitor.getCpfEleitor());
+            pstm.setInt(1, objEleitor.getTituloEleitoralEleitor());
             pstm.execute();
             pstm.close();
 
@@ -77,13 +79,15 @@ public class EleitorDAO {
     }
 
     public void alterarEleitor(EleitorDTO objEleitor) throws ClassNotFoundException {
-        String sql = "update eleitores set nomeEleitor=? where cpfEleitor = ?";
+        String sql = "update eleitor set nome=?, usuario=?, senha=? where titulo_eleitoral_eleitor = ?";
         con = new ConexaoDAO().conexaoBD();
 
         try {
             pstm = con.prepareStatement(sql);
-            pstm.setString(1, objEleitor.getNomeEleitor());
-            pstm.setInt(2, objEleitor.getCpfEleitor());
+            pstm.setString(1, objEleitor.getNome());
+            pstm.setString(2, objEleitor.getUsuario());
+            pstm.setString(3, objEleitor.getSenha());
+            pstm.setInt(4, objEleitor.getTituloEleitoralEleitor());
 
             pstm.execute();
             pstm.close();
@@ -96,11 +100,11 @@ public class EleitorDAO {
         con = new ConexaoDAO().conexaoBD();
 
         try {
-            String sql = "select * from eleitores where loginEleitor = ? and senhaEleitor = ?";
+            String sql = "select * from eleitor where usuario = ? and senha = ?";
             pstm = con.prepareStatement(sql);
 
-            pstm.setString(1, objEleitorDTO.getLoginEleitor());
-            pstm.setString(2, objEleitorDTO.getSenhaEleitor());
+            pstm.setString(1, objEleitorDTO.getUsuario());
+            pstm.setString(2, objEleitorDTO.getSenha());
 
             rs = pstm.executeQuery();
 

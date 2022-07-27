@@ -12,7 +12,7 @@ import java.util.Date;
  * @author sala19a
  */
 public class EleitorDTO {
-    private String nomeEleitor;
+    private String nome;
     private String usuario;
     private String senha;
     private Integer tituloEleitoralEleitor;
@@ -21,15 +21,15 @@ public class EleitorDTO {
     /**
      * @return the nomeEleitor
      */
-    public String getNomeEleitor() {
-        return nomeEleitor;
+    public String getNome() {
+        return nome;
     }
 
     /**
      * @param nomeEleitor the nomeEleitor to set
      */
-    public void setNomeEleitor(String nomeEleitor) {
-        this.nomeEleitor = nomeEleitor;
+    public void setNome(String eleitor) {
+        this.nome = eleitor;
     }
 
     /**
@@ -44,6 +44,34 @@ public class EleitorDTO {
      */
     public void setTituloEleitoralEleitor(int tituloEleitoralEleitor) {
         this.tituloEleitoralEleitor = tituloEleitoralEleitor;
+    }
+
+    /**
+     * @return the tituloEleitoralEleitor
+     */
+    public String getUsuario() {
+        return this.usuario;
+    }
+
+    /**
+     * @param tituloEleitoralEleitor the tituloEleitoralEleitor to set
+     */
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the tituloEleitoralEleitor
+     */
+    public String getSenha() {
+        return this.senha;
+    }
+
+    /**
+     * @param tituloEleitoralEleitor the tituloEleitoralEleitor to set
+     */
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
       
     
