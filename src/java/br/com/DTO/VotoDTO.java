@@ -14,7 +14,7 @@ public class VotoDTO {
     private Integer idVoto;
     
     CandidatoDTO objCandidatoDTO = new CandidatoDTO();
-    UsuarioDTO objUsuarioDTO = new UsuarioDTO();
+    EleitorDTO objUsuarioDTO = new EleitorDTO();
     
     public VotoDTO(Integer idVoto, Integer numeroCandidato, Integer cpfUsuario){
         this.idVoto = idVoto;

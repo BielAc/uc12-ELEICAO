@@ -1,0 +1,57 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2022-07-27 19:14
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: sala19a
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+CREATE TABLE IF NOT EXISTS `daniel2`.`eleitor` (
+  `titulo_eleitoral_eleitor` INT(11) NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`titulo_eleitoral_eleitor`),
+  UNIQUE INDEX `titulo_eleitoral_UNIQUE` (`titulo_eleitoral_eleitor` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `daniel2`.`voto` (
+  `idvoto` INT(11) NOT NULL AUTO_INCREMENT,
+  `titulo_eleitoral_eleitor` INT(11) NOT NULL,
+  `numero_candidato` INT(11) NOT NULL,
+  PRIMARY KEY (`idvoto`),
+  INDEX `fk_voto_eleitor_idx` (`titulo_eleitoral_eleitor` ASC),
+  INDEX `fk_voto_candidato1_idx` (`numero_candidato` ASC),
+  CONSTRAINT `fk_voto_eleitor`
+    FOREIGN KEY (`titulo_eleitoral_eleitor`)
+    REFERENCES `daniel2`.`eleitor` (`titulo_eleitoral_eleitor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_voto_candidato1`
+    FOREIGN KEY (`numero_candidato`)
+    REFERENCES `daniel2`.`candidato` (`numero_candidato`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `daniel2`.`candidato` (
+  `numero_candidato` INT(11) NOT NULL,
+  `titulo_eleitoral_eleitor` INT(11) NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`numero_candidato`),
+  INDEX `fk_candidato_eleitor1_idx` (`titulo_eleitoral_eleitor` ASC),
+  CONSTRAINT `fk_candidato_eleitor1`
+    FOREIGN KEY (`titulo_eleitoral_eleitor`)
+    REFERENCES `daniel2`.`eleitor` (`titulo_eleitoral_eleitor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
