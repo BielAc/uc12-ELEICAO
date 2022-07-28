@@ -35,7 +35,7 @@ public class EleitorDTO {
     /**
      * @return the tituloEleitoralEleitor
      */
-    public int getTituloEleitoralEleitor() {
+    public Integer getTituloEleitoralEleitor() {
         return tituloEleitoralEleitor;
     }
 
