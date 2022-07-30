@@ -4,6 +4,7 @@
     Author     : sala19a
 --%>
 
+<%@page import="br.com.Config.LoggedUser"%>
 <%@page import="br.com.DTO.EleitorDTO"%>
 <%@page import="br.com.DAO.EleitorDAO"%>
 <%@page import="java.util.Optional"%>
@@ -18,24 +19,24 @@
     <body>
         <%
             try {
-                EleitorDAO objClienteDAO = new EleitorDAO();
-                EleitorDTO objClienteDTO;
+                EleitorDAO objEleitorDAO = new EleitorDAO();
+                EleitorDTO objEleitorDTO = new EleitorDTO();
 
                 String usuario = request.getParameter("usuario");
                 String senha = request.getParameter("senha");
 
                 if (usuario != null && senha != null) {
-                    objClienteDTO = objClienteDAO.findByUsuario(request.getParameter("usuario"));
+                    objEleitorDTO = objEleitorDAO.findByUsuario(usuario);
 
-                    if (objClienteDTO.getTituloEleitoralEleitor() != null) {
-                        System.out.print("Está presente");
-                        if (objClienteDTO.getSenha().equals(senha)) {
-                            response.sendRedirect("http://localhost:8080/uc12-ELEICAO/pages/view/listarEleitor.jsp?nomeUsuario=" + objClienteDTO.getNome());
+                    if (objEleitorDTO.getTituloEleitoralEleitor() != null) {
+                        if (objEleitorDTO.getSenha().equals(senha)) {
+                            LoggedUser.setEleitor(objEleitorDTO);
+                            response.sendRedirect("../view/listarCandidato.jsp");
                         }
                     }
                 }
 
-                response.sendRedirect("http://localhost:8080/uc12-ELEICAO/index.jsp");
+                response.sendRedirect("../../index.jsp");
 
             } catch (Exception e) {
                 e.printStackTrace();

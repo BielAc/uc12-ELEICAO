@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class EleitorDTO {
     private String nome;
-    private String usuario;
+    public String usuario;
     private String senha;
     private Integer tituloEleitoralEleitor;
     
